@@ -7,7 +7,7 @@ pycryptodomex
 lxml>=4.6.1
 colorama
 capstone
-keystone-engine
+keystone-engine @ git+https://github.com/Madara273/Keystone-Engine.git@master#subdirectory=bindings/python
 qrcode
 requests
 passlib
