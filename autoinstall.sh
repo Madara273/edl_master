@@ -5,6 +5,13 @@ PATH_SCRIPT=$(dirname "${0}")
 [ "$(id -u)" != 0 ] && { printf "\nYou must run this script as root!\n" && exit 1; }
 
 if [ "$(uname -s)" = "Linux" ]; then
+	if command -v apt-get >/dev/null 2>&1; then
+		printf "\nInstalling system build dependencies via apt...\n"
+		apt-get update && apt-get install -y cmake build-essential python3-dev || {
+			printf "\nFailed to install build dependencies via apt!\n" && exit 1
+		}
+	fi
+
 	if ! "${PATH_SCRIPT}/install-linux-edl-drivers.sh"; then
 		printf "\nFailed to install the needed drivers!\n" && exit 1
 	fi
